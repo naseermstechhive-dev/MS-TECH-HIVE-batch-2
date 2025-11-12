@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
+      'poppins': ['Poppins', 'sans-serif'],
+      'bebasNeue': ['Bebas Neue', 'sans-serif'],
+      'sans': ['"A"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       poppins: ["Poppins", "sans-serif"],
       bebasNeue: ["Bebas Neue", "sans-serif"],
     },
