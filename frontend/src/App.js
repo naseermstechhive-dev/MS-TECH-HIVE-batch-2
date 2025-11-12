@@ -1,13 +1,51 @@
 import logo from './logo.svg';
 import './App.css';
+import {Routes,Route} from "react-router-dom";
+import HomePage from './Pages/HomePage';
+import About from './Pages/About';
+import Contact from './Pages/Contact';
+import IndustriesPage from './Pages/IndustriesPage';
+import Services from './Pages/Services';
+import ClinicLab from './Components/Industries/ClinicLab';
+import College from './Components/Industries/College';
+import Construction from './Components/Industries/Construction';
+import Ecommerce from './Components/Industries/Ecommerce';
+import Hospital from './Components/Industries/Hospital';
+import Logistics from './Components/Industries/Logistics';
+import Restaurant from './Components/Industries/Restaurant';
+import RetaileShop from './Components/Industries/RetaileShop';
+import School from './Components/Industries/School';
+import ITCompany from './Components/Industries/ITCompany';
+import Office from './Components/Industries/Office';
+import Footer from './Components/Footer';
 
 function App() {
   return (
-   <div className="App">
-  <div className="text-3xl font-bold text-blue-500 bg-yellow-200 p-4 rounded-lg">
-    MS-TECH HIVE
-  </div>
-</div>
+    <div className="App flex flex-col min-h-screen">
+      <div className="flex-grow">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/industries" element={<IndustriesPage />} />
+          <Route path="/service" element={<Services />} />
+          <Route path="/clinicLab" element={<ClinicLab />} />
+          <Route path="/college" element={<College />} />
+          <Route path="/construction" element={<Construction />} />
+          <Route path="/ecommerce" element={<Ecommerce />} />
+          <Route path="/hospital" element={<Hospital />} />
+          <Route path="/logistics" element={<Logistics />} />
+          <Route path="/office" element={<Office />} />
+          <Route path="/restaurant" element={<Restaurant />} />
+          <Route path="/retaileShop" element={<RetaileShop />} />
+          <Route path="/school" element={<School />} />
+          <Route path="/itCompany" element={<ITCompany />} />
+        </Routes>
+      </div>
+
+      <Footer />
+    </div>
+
 
   );
 }
