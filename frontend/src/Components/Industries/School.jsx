@@ -32,7 +32,7 @@ const School = () => {
         logo2={<CiClock2 />}
         title="School"
         subtitle="Education Management Solutions"
-        description="TRevolutionize your school's operations with automated attendance tracking, parent communication portals, and comprehensive administrative management systems."
+        description="Revolutionize your school's operations with automated attendance tracking, parent communication portals, and comprehensive administrative management systems."
         primaryButton="Get Started Today"
         secondaryButton="View All Services"
         image="school.png"
@@ -40,17 +40,17 @@ const School = () => {
         text2='updates'
       />
 
-          <div className="bg-gradient-to-br  from-gray-800 to-gray-900">
-        <div className="flex  flex-col gap-2 pt-10 pb-20">
-          <div className="text-[36px] font-bold text-white max-sm:text-[22px]">
+       <div className="bg-gradient-to-br  from-gray-800 to-gray-900">
+         <div className="flex  flex-col gap-2 pt-10 pb-20">
+          <div className="text-[36px] font-bold text-white max-sm:text-[20px]">
             Complete School Management System
           </div>
-          <div className="text-[20px] text-white max-sm:text-[16px]">
+          <div className="text-[20px] text-white max-sm:text-[15px] ">
             Streamline every aspect of school administration with our comprehensive automation platform
           </div>
         </div>
 
-        <div className="flex  flex-row  max-sm:flex-col justify-center gap-6">
+        <div className="flex  flex-row  max-sm:flex-col justify-center gap-6 max-sm:pl-3">
           <InfoCard2
             icon={<FiUsers className="text-yellow-500" />}
             title="Student Management"
@@ -73,7 +73,7 @@ const School = () => {
           />
         </div>
 
-        <div className="flex  flex-row  max-sm:flex-col justify-center gap-6 pt-8">
+        <div className="flex  flex-row  max-sm:flex-col justify-center gap-6 pt-8 max-sm:pl-3">
           <InfoCard2
             icon={<CgNotes  className="text-yellow-500"   />}
             title="Grade Management"
@@ -97,33 +97,33 @@ const School = () => {
         </div>
 
 
-         <div className="flex p-10  bg-[#0b132b] gap-6">
+         <div className="flex  flex-row max-sm:flex-col p-10  bg-[#0b132b] gap-6 " >
                        <div className=" text-white p-8  mx-auto">
-                  <h2 className="text-[30px] font-bold mb-6">
+                  <h2 className="text-[30px] font-bold mb-6  max-sm:text-[20px]">
                    Enhance Educational Excellence
                   </h2>
                   <ul className="space-y-4">
                     {points.map((point, index) => (
-                      <li key={index} className="flex items-start gap-3 text-lg">
+                      <li key={index} className="flex items-start gap-3 text-lg max-sm:text-[18px] max-sm:text-start">
                         <FiCheckCircle  className="text-yellow-400 mt-1 text-[26px]" />
                         <span>{point}</span>
                       </li>
                     ))}
                   </ul>
                        </div>
-                         <div className="bg-[#d79c00] text-[#0b132b] p-8 rounded-2xl w-[600px] mx-auto">
-                  <h2 className="text-2xl font-bold mb-3 text-start">
+                         <div className="bg-[#d79c00] text-[#0b132b] p-8 max-sm:p-3 rounded-2xl w-[600px] max-sm:w-[340px] mx-auto">
+                  <h2 className="text-2xl font-bold mb-3 text-start max-sm:text-[20px]">
                    Transform Your School Today
                   </h2>
                   <p className="mb-6 text-base text-start">
                     Join progressive schools that have modernized their operations with our education management solutions.
                   </p>
         
-                  <ul className="space-y-3 mb-6">
+                  <ul className="space-y-3 mb-6 ">
                     {points2.map((point, index) => (
-                      <li key={index} className="flex items-start gap-3 text-base">
+                      <li key={index} className="flex items-start gap-3 text-base max-sm:text-start ">
                         <FiCheckCircle  className="text-[#0b132b] mt-1 text-[26px]"   />
-                        <span>{point}</span>
+                        <span > {point}</span>
                       </li>
                     ))}
                   </ul>
@@ -133,7 +133,7 @@ const School = () => {
                   </button></div>
                           </div>
               </div> 
-      </div>
+          </div>
       
     </>
   )

@@ -58,7 +58,7 @@ const College = () => {
           </div>
         </div>
 
-        <div className="flex  flex-row max-sm:flex-col  justify-center gap-6">
+        <div className="flex  flex-row max-sm:flex-col  justify-center gap-6 max-sm:pl-4">
           <InfoCard2
             icon={<FiUsers className="text-yellow-500" />}
             title=" Admission Management"
@@ -81,7 +81,7 @@ const College = () => {
           />
         </div>
 
-        <div className="flex  flex-row max-sm:flex-col  justify-center gap-6 pt-8">
+        <div className="flex  flex-row max-sm:flex-col  justify-center gap-6 pt-8 max-sm:pl-4">
           <InfoCard2
             icon={<PiToolboxLight  className="text-yellow-500"   />}
             title="Course Management"
@@ -107,19 +107,19 @@ const College = () => {
 
          <div className="flex flex-row  max-sm:flex-col p-10  bg-[#0b132b] gap-6">
                        <div className=" text-white p-8  mx-auto">
-                  <h2 className="text-[30px] font-bold mb-6">
+                  <h2 className="text-[30px] font-bold mb-6 max-sm:text-[20px]">
                    Elevate Higher Education Standards
                   </h2>
                   <ul className="space-y-4">
                     {points.map((point, index) => (
-                      <li key={index} className="flex items-start gap-3 text-lg">
+                      <li key={index} className="flex items-start gap-3 text-lg max-sm:text-start">
                         <FiCheckCircle  className="text-yellow-400 mt-1 text-[26px]" />
                         <span>{point}</span>
                       </li>
                     ))}
                   </ul>
                        </div>
-                         <div className="bg-[#d79c00] text-[#0b132b] p-8 rounded-2xl w-[600px] mx-auto">
+                         <div className="bg-[#d79c00] text-[#0b132b] p-8 rounded-2xl w-[600px] max-sm:w-[340px] mx-auto">
                   <h2 className="text-2xl font-bold mb-3 text-start">
                  Ready for Digital Transformation?
                   </h2>
@@ -129,7 +129,7 @@ const College = () => {
         
                   <ul className="space-y-3 mb-6">
                     {points2.map((point, index) => (
-                      <li key={index} className="flex items-start gap-3 text-base">
+                      <li key={index} className="flex items-start gap-3 text-base max-sm:text-start">
                         <FiCheckCircle  className="text-[#0b132b] mt-1 text-[26px]"   />
                         <span>{point}</span>
                       </li>

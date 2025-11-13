@@ -34,7 +34,7 @@ const InfoCard2 = ({ icon, title, description1, description2 }) => {
   return (
     <div
       className="group w-[410px] h-[220px] bg-[#374151] rounded-[12px] p-6 flex flex-col gap-3 justify-start items-start text-white
-                 shadow-md max-sm:w-[390px] relative overflow-hidden hover:bg-black/79 "
+                 shadow-md max-sm:w-[360px] relative overflow-hidden hover:bg-black/79  "
     >
       {/* Icon - Moves left on hover - Accepts both React icons and string emojis */}
       <div className="transition-all duration-300 group-hover:-translate-x-6 text-4xl text-amber-400">
