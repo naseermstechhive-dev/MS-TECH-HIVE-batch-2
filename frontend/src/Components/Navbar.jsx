@@ -1,273 +1,259 @@
 
-
-
-
 import React, { useState, useEffect } from "react";
-import { FaGlobe, FaBars, FaTimes } from "react-icons/fa";
+import {
+  FaGlobe,
+  FaBars,
+  FaTimes,
+  FaChevronDown,
+  FaMoon,
+  FaSun,
+} from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { useTheme } from "../Context/ThemeContext";
+import { useTranslation } from "react-i18next";
 
 const Navbar = () => {
+  const { theme, toggleTheme } = useTheme();
+  const { t, i18n } = useTranslation();
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isLanguageOpen, setIsLanguageOpen] = useState(false);
   const [isIndustriesOpen, setIsIndustriesOpen] = useState(false);
+  const [isLanguageOpen, setIsLanguageOpen] = useState(false);
 
   const industries = [
-    "Hospital",
-    "School",
-    "College",
-    "Restaurant",
-    "Office",
-    "Retail Shop",
-    "Construction",
-    "Logistics",
-    "IT Company",
-    "E-commerce",
-    "Clinic / Lab",
+    { key: t("Hospital"), path: "/hospital" },
+    { key: t("School"), path: "/school" },
+    { key: t("College"), path: "/college" },
+    { key: t("Restaurant"), path: "/restaurant" },
+    { key: t("Office"), path: "/office" },
+    { key: t("Retail"), path: "/retail" },
+    { key: t("Construction"), path: "/construction" },
+    { key: t("Logistics"), path: "/logistics" },
+    { key: t("IT Company"), path: "/it-company" },
+    { key: t("E-commerce"), path: "/ecommerce" },
+    { key: t("Clinic & Lab"), path: "/clinic-lab" },
   ];
 
-  const handleLinkClick = () => {
+  const languages = [
+    { code: "en", label: "English" },
+    { code: "te", label: "తెలుగు" },
+    { code: "hi", label: "हिन्दी" },
+    { code: "ta", label: "தமிழ்" },
+    { code: "kn", label: "ಕನ್ನಡ" },
+  ];
+
+  const closeAll = () => {
     setIsMenuOpen(false);
-    setIsLanguageOpen(false);
     setIsIndustriesOpen(false);
+    setIsLanguageOpen(false);
   };
 
-  // ✅ Close dropdowns on outside click
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (!e.target.closest(".dropdown")) {
-        setIsLanguageOpen(false);
         setIsIndustriesOpen(false);
+        setIsLanguageOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const handleChangeLanguage = (code) => {
+    i18n.changeLanguage(code);
+    closeAll();
+  };
+
   return (
-    <nav className="bg-[#0c121d] shadow-md fixed w-full top-0 z-50 border-b-[0.5px]">
-      {/* Navbar Top */}
-      <div className="max-w-7xl mx-auto flex items-center justify-between py-2 px-4 md:px-10">
-        {/* Logo Section */}
-        <div className="flex items-start">
-          <div className="w-10 h-10 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-full flex items-center justify-center shadow-md flex-shrink-0">
+    <nav
+      className={`fixed w-full top-0 z-50 shadow-md transition-colors duration-300 ${
+        theme === "dark"
+          ? "bg-[#0c121d] text-gray-200 border-b border-gray-800"
+          : "bg-white text-gray-900 border-b border-gray-200"
+      }`}
+    >
+      <div className="mx-auto flex items-center md:w-[91%] justify-between py-2 px-4 md:px-12">
+        {/* Logo */}
+        <div className="flex items-center gap-2">
+          <div className="w-10 h-10 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-full flex items-center justify-center shadow-md">
             <span className="text-2xl">🐢</span>
           </div>
-          <div className="flex flex-col justify-start leading-tight ml-[8px]">
-            <p className="text-white text-start font-bold text-lg">MS Tech Hive</p>
-            <p className="text-yellow-400 text-start text-xs font-medium">
-              Automate Work. Accelerate Growth.
+          <div className="flex flex-col">
+            <p className="font-bold text-left text-lg">MS Tech Hive</p>
+            <p className="text-yellow-500 text-xs font-medium">
+              {t("Empowering Digital Growth")}
             </p>
           </div>
         </div>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center space-x-8 font-medium gap-4">
-          <a
-            href="#home"
-            onClick={handleLinkClick}
-            className="text-gray-200 hover:text-yellow-400 text-[14px] font-normal"
+        <div className="hidden md:flex items-center gap-8 font-medium">
+          <Link
+            to="/"
+            onClick={closeAll}
+            className="hover:text-yellow-500 transition"
           >
-            Home
-          </a>
+            {t("Home")}
+          </Link>
 
           {/* Industries Dropdown */}
-          <div
-            className="relative dropdown"
-            onMouseEnter={() => setIsIndustriesOpen(true)}
-            onMouseLeave={() => setIsIndustriesOpen(false)}
-          >
+          <div className="relative dropdown">
             <button
               onClick={() => setIsIndustriesOpen(!isIndustriesOpen)}
-              className="text-gray-200 hover:text-yellow-400 text-[14px] font-normal flex items-center transition-all duration-300"
+              className="flex items-center hover:text-yellow-500 transition"
             >
-              Industries{" "}
-              <span
-                className={`ml-1 inline-block transform transition-transform duration-300 ${
+              {t("Industries")}
+              <FaChevronDown
+                className={`ml-1 transition-transform duration-300 ${
                   isIndustriesOpen ? "rotate-180 text-yellow-400" : "rotate-0"
                 }`}
+              />
+            </button>
+            {isIndustriesOpen && (
+              <div
+                className={`absolute left-0 mt-2 w-44 rounded-md shadow-lg z-20 ${
+                  theme === "dark"
+                    ? "bg-[#1c1f26]  text-gray-200"
+                    : "bg-white text-gray-800"
+                }`}
               >
-                ^
-              </span>
-            </button>
-
-            <div
-              className={`absolute left-0 mt-2 w-44 bg-[#1c1f26] border border-gray-700 rounded-md shadow-lg transition-all duration-200 z-10 ${
-                isIndustriesOpen
-                  ? "opacity-100 scale-100"
-                  : "opacity-0 scale-95 pointer-events-none"
-              }`}
-            >
-              {industries.map((item) => (
-                <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  onClick={handleLinkClick}
-                  className="block px-4 py-1 text-start text-gray-200 font-normal hover:text-amber-400 text-[14px]"
-                >
-                  {item}
-                </a>
-              ))}
-            </div>
+                {industries.map((item) => (
+                  <Link
+                    key={item.key}
+                    to={item.path}
+                    onClick={closeAll}
+                    className={`block px-4 py-2 hover:bg-yellow-500 hover:text-black transition`}
+                  >
+                    {item.key}
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
 
-          <a
-            href="#services"
-            onClick={handleLinkClick}
-            className="text-gray-200 hover:text-yellow-400 text-[14px] font-normal"
+          <Link
+            to="/service"
+            onClick={closeAll}
+            className="hover:text-yellow-500"
           >
-            Services
-          </a>
-
-          <a
-            href="#about"
-            onClick={handleLinkClick}
-            className="text-gray-200 hover:text-yellow-400 text-[14px] font-normal"
+            {t("Services")}
+          </Link>
+          <Link to="/about" onClick={closeAll} className="hover:text-yellow-500">
+            {t("About")}
+          </Link>
+          <Link
+            to="/contact"
+            onClick={closeAll}
+            className="hover:text-yellow-500"
           >
-            About
-          </a>
+            {t("Contact")}
+          </Link>
 
-          <a
-            href="#contact"
-            onClick={handleLinkClick}
-            className="text-gray-200 font-semibold text-[14px] font-normal"
-          >
-            Contact
-          </a>
-
-          {/* 🌐 Language Dropdown */}
-          <div
-            className="relative dropdown"
-            onMouseEnter={() => setIsLanguageOpen(true)}
-            onMouseLeave={() => setIsLanguageOpen(false)}
-          >
-            <button
-              onClick={() => setIsLanguageOpen(!isLanguageOpen)}
-              className="flex items-center text-[14px] font-normal border-0 text-gray-200 hover:text-yellow-400 px-3 py-2 border border-gray-600 rounded-lg transition-colors duration-200"
-            >
-              <FaGlobe className="mr-2" /> us
-            </button>
-
-            <div
-              className={`absolute right-0 mt-2 w-40 bg-[#1c1f26] border border-gray-700 rounded-md shadow-lg z-10 transition-all duration-200 ${
-                isLanguageOpen
-                  ? "opacity-100 scale-100"
-                  : "opacity-0 scale-95 pointer-events-none"
-              }`}
-            >
-              {["English", "తెలుగు", "हिन्दी", "தமிழ்", "ಕನ್ನಡ"].map((lang) => (
-                <button
-                  key={lang}
-                  onClick={handleLinkClick}
-                  className="block w-full text-left px-4 py-2 text-gray-200 hover:bg-yellow-500 hover:text-black"
-                >
-                  {lang}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile Buttons */}
-        <div className="md:hidden flex flex-col items-center space-y-2">
-          {/* Language Button */}
+          {/* Language Dropdown */}
           <div className="relative dropdown">
             <button
               onClick={() => setIsLanguageOpen(!isLanguageOpen)}
-              className="text-gray-200 hover:text-yellow-400 text-lg"
+              className={`flex items-center rounded-lg px-3 py-2 hover:text-yellow-500 transition`}
             >
-              <FaGlobe className="text-[13px]" />
+              <FaGlobe className="mr-2" />
+              <span>{t("US")}</span>
+              <FaChevronDown
+                className={`ml-1 transition-transform duration-300 ${
+                  isLanguageOpen ? "rotate-180 text-yellow-400" : "rotate-0"
+                }`}
+              />
             </button>
 
-            <div
-              className={`absolute right-0 mt-2 w-40 bg-[#1c1f26] border border-gray-700 rounded-md shadow-lg z-10 transition-all duration-200 ${
-                isLanguageOpen
-                  ? "opacity-100 scale-100"
-                  : "opacity-0 scale-95 pointer-events-none"
-              }`}
-            >
-              {["English", "తెలుగు", "हिन्दी", "தமிழ்", "ಕನ್ನಡ"].map((lang) => (
-                <button
-                  key={lang}
-                  onClick={handleLinkClick}
-                  className="block w-full text-left px-4 py-2 text-gray-200 hover:bg-yellow-500 hover:text-black"
-                >
-                  {lang}
-                </button>
-              ))}
-            </div>
+            {isLanguageOpen && (
+              <div
+                className={`absolute right-0 mt-2 w-40 border rounded-md shadow-lg z-20 ${
+                  theme === "dark"
+                    ? "bg-[#1c1f26] border-gray-700 text-gray-200"
+                    : "bg-white border-gray-200 text-gray-800"
+                }`}
+              >
+                {languages.map((lang) => (
+                  <button
+                    key={lang.code}
+                    onClick={() => handleChangeLanguage(lang.code)}
+                    className={`block w-full text-left px-4 py-2 hover:bg-yellow-500 hover:text-black transition`}
+                  >
+                    {lang.label}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
-          {/* Menu Button */}
+          {/* Theme Toggle */}
+          <button
+            onClick={toggleTheme}
+            className="ml-2 p-2 rounded-full hover:scale-110 transition"
+          >
+            {theme === "light" ? (
+              <FaMoon className="text-gray-700" />
+            ) : (
+              <FaSun className="text-yellow-400" />
+            )}
+          </button>
+        </div>
+
+        {/* Mobile Menu */}
+        <div className="md:hidden flex items-center gap-3">
+          <button onClick={toggleTheme} className="text-xl">
+            {theme === "light" ? (
+              <FaMoon />
+            ) : (
+              <FaSun className="text-yellow-400" />
+            )}
+          </button>
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="text-gray-200 hover:text-yellow-400 text-2xl transition-transform duration-300"
+            className="text-2xl"
           >
-            {isMenuOpen ? (
-              <FaTimes className="rotate-180 transition-transform duration-300 text-[17px]" />
-            ) : (
-              <FaBars className="text-[17px]" />
-            )}
+            {isMenuOpen ? <FaTimes /> : <FaBars />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      <div
-        className={`absolute left-0 top-full w-full h-[calc(100vh-60px)] bg-[#0c121d] bg-opacity-95 backdrop-blur-sm shadow-2xl border-t border-gray-700 transform transition-transform duration-500 ease-in-out ${
-          isMenuOpen
-            ? "translate-x-0 opacity-100"
-            : "-translate-x-full opacity-0"
-        }`}
-      >
-        <div className="p-5 space-y-4 text-gray-200 text-start">
-          <a
-            href="#home"
-            onClick={handleLinkClick}
-            className="block font-normal hover:text-yellow-400"
-          >
-            Home
-          </a>
-          <a
-            href="#services"
-            onClick={handleLinkClick}
-            className="block font-normal hover:text-yellow-400"
-          >
-            Services
-          </a>
-
-          <div>
-            <p className="font-normal mb-2">Industries</p>
-            <div className="ml-3 space-y-1 flex flex-col gap-3">
-              {industries.map((item) => (
-                <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  onClick={handleLinkClick}
-                  className="block text-gray-400 text-sm hover:text-yellow-400"
-                >
-                  {item}
-                </a>
-              ))}
+      {/* Mobile Menu Content */}
+      {isMenuOpen && (
+        <div
+          className={`absolute left-0 top-full w-full h-[calc(100vh-60px)] border-t backdrop-blur-sm shadow-2xl z-10 transition-colors duration-300 ${
+            theme === "dark"
+              ? "bg-[#0c121d] border-gray-700 text-gray-200"
+              : "bg-white border-gray-200 text-gray-800"
+          }`}
+        >
+          <div className="p-5 space-y-4">
+            <Link to="/" onClick={closeAll}>
+              {t("Home")}
+            </Link>
+            <Link to="/service" onClick={closeAll}>
+              {t("Services")}
+            </Link>
+            <div>
+              <p className="font-medium mb-1">{t("Industries")}</p>
+              <div className="ml-3 flex flex-col gap-2">
+                {industries.map((item) => (
+                  <Link key={item.key} to={item.path} onClick={closeAll}>
+                    {item.key}
+                  </Link>
+                ))}
+              </div>
             </div>
+            <Link to="/about" onClick={closeAll}>
+              {t("About")}
+            </Link>
+            <Link to="/contact" onClick={closeAll}>
+              {t("Contact")}
+            </Link>
           </div>
-
-          <a
-            href="#about"
-            onClick={handleLinkClick}
-            className="block font-normal hover:text-yellow-400"
-          >
-            About
-          </a>
-          <a
-            href="#contact"
-            onClick={handleLinkClick}
-            className="block font-normal hover:text-yellow-500"
-          >
-            Contact
-          </a>
         </div>
-      </div>
+      )}
     </nav>
   );
 };
 
 export default Navbar;
+

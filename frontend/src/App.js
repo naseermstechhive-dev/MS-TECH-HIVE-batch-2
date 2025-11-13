@@ -1,6 +1,7 @@
-import logo from './logo.svg';
 import './App.css';
-import {Routes,Route} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+import Navbar from './Components/Navbar';
+import Footer from './Components/Footer';
 import HomePage from './Pages/HomePage';
 import About from './Pages/About';
 import Contact from './Pages/Contact';
@@ -17,11 +18,14 @@ import RetaileShop from './Components/Industries/RetaileShop';
 import School from './Components/Industries/School';
 import ITCompany from './Components/Industries/ITCompany';
 import Office from './Components/Industries/Office';
-import Footer from './Components/Footer';
+import IndustriesSection from './Components/IndustriesSections';
 
 function App() {
   return (
-    <div className="App flex flex-col min-h-screen">
+    // ⚡ No need to manually apply "dark", ThemeContext handles it on <html>
+    <div className="bg-white dark:bg-[#0c121d] text-black dark:text-white min-h-screen transition-colors duration-300">
+      <Navbar />
+
       <div className="flex-grow">
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -40,13 +44,13 @@ function App() {
           <Route path="/retaileShop" element={<RetaileShop />} />
           <Route path="/school" element={<School />} />
           <Route path="/itCompany" element={<ITCompany />} />
+          <Route path="/industrieSection" element={<IndustriesSection />} />
+
         </Routes>
       </div>
 
       <Footer />
     </div>
-
-
   );
 }
 
