@@ -1,0 +1,61 @@
+
+
+// import React from "react";
+
+// const InfoCard2 = ({ icon, title, description1, description2 }) => {
+//   return (
+//     <div
+//       className="group w-[410px] h-[220px] bg-[#374151] rounded-[12px] p-6 flex flex-col gap-3 justify-start items-start text-white
+//                  shadow-md max-sm:w-[390px] relative overflow-hidden hover:bg-black/79 "
+//     >
+//       {/* Icon - Moves left on hover */}
+//       <div className="transition-all duration-300 group-hover:-translate-x-6">
+//         {icon}
+//       </div>
+
+//       {/* Text Content - No hover effects */}
+//       <p className="text-[25px] font-semibold mb-1">
+//         {title}
+//       </p>
+
+//       <div>
+//         <p className="text-sm text-start text-gray-300 text-[17px]">{description1}</p>
+//         <p className="text-start text-[17px] text-gray-300">{description2}</p>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default InfoCard2;
+
+import React from "react";
+
+const InfoCard2 = ({ icon, title, description1, description2 }) => {
+  return (
+    <div
+      className="group w-[410px] h-[220px] bg-[#374151] rounded-[12px] p-6 flex flex-col gap-3 justify-start items-start text-white
+                 shadow-md max-sm:w-[390px] relative overflow-hidden hover:bg-black/79 "
+    >
+      {/* Icon - Moves left on hover - Accepts both React icons and string emojis */}
+      <div className="transition-all duration-300 group-hover:-translate-x-6 text-4xl text-amber-400">
+        {typeof icon === 'string' ? (
+          <span>{icon}</span>
+        ) : (
+          React.isValidElement(icon) ? React.cloneElement(icon, { className: "text-4xl" }) : icon
+        )}
+      </div>
+
+      {/* Text Content - No hover effects */}
+      <p className="text-[25px] font-semibold mb-1">
+        {title}
+      </p>
+
+      <div>
+        <p className="text-sm text-start text-gray-300 text-[17px]">{description1}</p>
+        <p className="text-sm text-start text-gray-300 text-[17px]">{description2}</p>
+      </div>
+    </div>
+  );
+};
+
+export default InfoCard2;
