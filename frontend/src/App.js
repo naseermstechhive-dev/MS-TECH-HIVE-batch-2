@@ -3,9 +3,10 @@ import './App.css';
 import {Routes,Route} from "react-router-dom";
 import HomePage from './Pages/HomePage';
 import About from './Pages/About';
-import Contact from './Pages/Contact';
+
 import IndustriesPage from './Pages/IndustriesPage';
 import Services from './Pages/Services';
+import Contact from "./Pages/Contact";
 import ClinicLab from './Components/Industries/ClinicLab';
 import College from './Components/Industries/College';
 import Construction from './Components/Industries/Construction';
@@ -18,6 +19,7 @@ import School from './Components/Industries/School';
 import ITCompany from './Components/Industries/ITCompany';
 import Office from './Components/Industries/Office';
 import Footer from './Components/Footer';
+
 
 function App() {
   return (
