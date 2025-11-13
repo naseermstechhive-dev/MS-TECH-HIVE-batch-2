@@ -4,13 +4,23 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
+import './i18n'; // import your actual i18n setup file
+import { ThemeProvider } from './Context/ThemeContext';
+import { LanguageProvider } from './Context/LanguageContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <ThemeProvider>
+      <LanguageProvider>
+      <BrowserRouter>
         <App />
     </BrowserRouter>
+      </LanguageProvider>
+    
+   
+    </ThemeProvider>
+    
   </React.StrictMode>
 );
 

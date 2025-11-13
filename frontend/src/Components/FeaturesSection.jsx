@@ -1,5 +1,7 @@
+
 import React from "react";
 import { FaBolt, FaChartLine, FaUsers, FaAward } from "react-icons/fa";
+import { useTheme } from "../Context/ThemeContext"; // Import theme if you want conditional rendering (optional)
 
 const features = [
   {
@@ -29,15 +31,29 @@ const features = [
 ];
 
 const FeaturesSection = () => {
+  const { theme } = useTheme(); // optional, for conditional logic
+
   return (
-    <section className="bg-[#1c2839] text-white py-20 px-6 md:px-12 lg:px-24 font-poppins">
-      <div className="w-[100%]  m-auto pt-[2rem]">
+    <section
+      className={`py-8 px-6  md:px-8 lg:px-24 font-poppins transition-colors duration-300
+        ${theme === "dark" ? "bg-[#1c2839] text-white" : "bg-gray-50 text-gray-900"}
+      `}
+    >
+      <div className="w-full m-auto  pt-7">
         {/* Heading */}
-        <div className="text-center max-w-3xl  mx-auto mb-12">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+        <div className="text-center max-w-3xl mx-auto mb-9">
+          <h2
+            className={`text-3xl md:text-4xl lg:text-5xl font-bold leading-tight transition-colors duration-300
+              ${theme === "dark" ? "text-white" : "text-gray-900"}
+            `}
+          >
             Why Choose MS Tech Hive?
           </h2>
-          <p className="mt-4 text-gray-300 text-base md:text-lg">
+          <p
+            className={`mt-4 text-base md:text-lg transition-colors duration-300
+              ${theme === "dark" ? "text-gray-300" : "text-gray-700"}
+            `}
+          >
             We combine cutting-edge technology with industry expertise to deliver
             solutions that drive real results.
           </p>
@@ -48,20 +64,30 @@ const FeaturesSection = () => {
           {features.map((f) => (
             <article
               key={f.id}
-              className="bg-[#1c2630] rounded-2xl p-8 shadow-xl border border-transparent hover:-translate-y-2 transition-all duration-300"
+              className={`rounded-2xl p-8 shadow-xl border border-transparent hover:-translate-y-2 transition-all duration-300
+                ${theme === "dark" ? "bg-[#1c2630]" : "bg-white"}
+              `}
             >
-              {/* Icon and Text both start from left */}
+              {/* Icon and Text */}
               <div className="flex flex-col items-start">
                 {/* Icon */}
-                <div className="w-14 h-14 rounded-md bg-[#FFC300] flex items-center justify-center text-[#0b0b0b] text-2xl md:text-3xl mb-5">
+                <div className="w-14 h-14 rounded-md bg-yellow-400 dark:bg-yellow-500 flex items-center justify-center text-black dark:text-black text-2xl md:text-3xl mb-5">
                   {f.icon}
                 </div>
 
                 {/* Text */}
-                <h3 className="text-lg  text-left md:text-xl font-semibold mb-2">
+                <h3
+                  className={`text-lg md:text-xl font-semibold mb-2 transition-colors duration-300
+                    ${theme === "dark" ? "text-white" : "text-gray-900"}
+                  `}
+                >
                   {f.title}
                 </h3>
-                <p className="text-gray-300 text-sm md:text-base text-left leading-relaxed">
+                <p
+                  className={`text-sm md:text-base leading-relaxed transition-colors duration-300
+                    ${theme === "dark" ? "text-gray-300" : "text-gray-700"}
+                  `}
+                >
                   {f.desc}
                 </p>
               </div>

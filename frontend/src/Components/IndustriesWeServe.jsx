@@ -1,5 +1,8 @@
+
 import React from "react";
 import { FaHospital, FaGraduationCap, FaUtensils, FaShoppingBag, FaBuilding, FaLaptop } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { useTheme } from "../Context/ThemeContext";
 
 const industries = [
   { id: 1, icon: <FaHospital size={40} className="text-[#00BFFF]" />, title: "Healthcare" },
@@ -11,33 +14,49 @@ const industries = [
 ];
 
 const IndustriesWeServe = () => {
+  const { theme } = useTheme();
+
   return (
-    <section className="bg-[#0B1221] text-white py-16 px-6 text-center">
-      <h2 className="text-3xl md:text-4xl font-bold mb-4">Industries We Serve</h2>
-      <p className="text-gray-400 mb-12 text-lg">
+    <section
+      className={`py-16 px-6 text-center transition-colors duration-300
+        ${theme === "dark" ? "bg-[#0B1221] text-white" : "bg-gray-50 text-gray-900"}
+      `}
+    >
+      <h2 className={`text-3xl md:text-4xl font-bold mb-4 transition-colors duration-300 ${theme === "dark" ? "text-white" : "text-gray-900"}`}>
+        Industries We Serve
+      </h2>
+      <p className={`mb-12 text-lg transition-colors duration-300 ${theme === "dark" ? "text-gray-400" : "text-gray-700"}`}>
         Specialized automation solutions across multiple industries
       </p>
 
       <div className="md:w-[90%] mx-auto">
-        {/* Mobile: 2 columns; md and up: all items on one row (6 columns) */}
-        <div className="w-[100%] m-auto pt-8 grid grid-cols-2 md:grid-cols-6 gap-6 justify-items-center">
+        <div className="w-full grid grid-cols-2 md:grid-cols-6 gap-6 justify-items-center">
           {industries.map((item) => (
             <div
               key={item.id}
-              /* card fills the grid cell on md so items align in a single row */
-              className="bg-[#1B2333] w-44 md:w-full md:max-w-none h-32 flex flex-col items-center justify-center rounded-xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300"
+              className={`w-44 md:w-full md:max-w-none h-32 flex flex-col items-center justify-center rounded-xl shadow-md transition-all duration-300 hover:shadow-xl hover:scale-105
+                ${theme === "dark" ? "bg-[#1B2333]" : "bg-white"}
+              `}
             >
               <div className="mb-3">{item.icon}</div>
-              <h3 className="text-lg font-semibold">{item.title}</h3>
+              <h3 className={`text-lg font-semibold transition-colors duration-300 ${theme === "dark" ? "text-white" : "text-gray-900"}`}>
+                {item.title}
+              </h3>
             </div>
           ))}
         </div>
       </div>
 
       <div className="mt-10">
-        <button className="bg-yellow-400 text-black px-6 py-3 rounded-xl font-semibold hover:bg-yellow-500 transition-all flex items-center gap-2 mx-auto">
-          View All Industries <span className="text-xl">→</span>
-        </button>
+        <Link to="/industrieSection">
+          <button
+            className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 flex items-center gap-2 mx-auto
+              ${theme === "dark" ? "bg-yellow-400 text-black hover:bg-yellow-500" : "bg-yellow-400 text-black hover:bg-yellow-500"}
+            `}
+          >
+            View All Industries <span className="text-xl">→</span>
+          </button>
+        </Link>
       </div>
     </section>
   );
