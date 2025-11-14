@@ -1,7 +1,6 @@
-
 import React from "react";
 import { FaBolt, FaChartLine, FaUsers, FaAward } from "react-icons/fa";
-import { useTheme } from "../Context/ThemeContext"; // Import theme if you want conditional rendering (optional)
+import { useTheme } from "../Context/ThemeContext";
 
 const features = [
   {
@@ -31,12 +30,16 @@ const features = [
 ];
 
 const FeaturesSection = () => {
-  const { theme } = useTheme(); // optional, for conditional logic
+  const { theme } = useTheme(); 
 
   return (
     <section
       className={`py-8 px-6  md:px-8 lg:px-24 font-poppins transition-colors duration-300
-        ${theme === "dark" ? "bg-[#1c2839] text-white" : "bg-gray-50 text-gray-900"}
+        ${
+          theme === "dark"
+            ? "bg-[#1c2839] text-white"
+            : "bg-gray-50 text-gray-900"
+        }
       `}
     >
       <div className="w-full m-auto  pt-7">
@@ -54,8 +57,8 @@ const FeaturesSection = () => {
               ${theme === "dark" ? "text-gray-300" : "text-gray-700"}
             `}
           >
-            We combine cutting-edge technology with industry expertise to deliver
-            solutions that drive real results.
+            We combine cutting-edge technology with industry expertise to
+            deliver solutions that drive real results.
           </p>
         </div>
 
