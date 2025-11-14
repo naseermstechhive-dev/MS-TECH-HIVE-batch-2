@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   FaFacebookF,
   FaTwitter,
@@ -11,8 +11,19 @@ import {
   FaMapMarkerAlt,
 } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 
 const Footer = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 900,
+      once: false,     
+      mirror: true,   
+      easing: "ease-out",
+    });
+  }, []);
   const navigate = useNavigate();
   const location = useLocation();
   const isHomeRoute = location.pathname === "/";
@@ -52,7 +63,7 @@ const Footer = () => {
       <div className="w-[85%] m-auto pt-8">
         <div className="flex flex-col md:flex-row md:justify-between gap-10 py-6 font-poppins transition-colors duration-500">
           {/* LEFT */}
-          <div className="md:w-[50%] w-full text-left">
+          <div data-aos="fade-right" className="md:w-[50%] w-full text-left">
             {/* Logo */}
             <div className="md:w-[62%] w-full">
               <button
@@ -98,9 +109,9 @@ const Footer = () => {
           </div>
 
           {/* RIGHT */}
-          <div className="flex lg:justify-around py-5 justify-between w-full md:w-[50%] leading-8">
+          <div   className="flex lg:justify-around py-5 justify-between w-full md:w-[50%] leading-8">
             {/* Quick Links */}
-            <div className="text-left">
+            <div data-aos="fade-up" className="text-left">
               <div className="text-2xl mb-3 text-gray-900 dark:text-white transition-colors duration-500">Quick Links</div>
               {["Home", "About-us", "Services", "Industries", "Contact"].map((link, idx) => (
                 <button
@@ -115,9 +126,9 @@ const Footer = () => {
 
             {/* Contact Info */}
             <div className="text-left">
-              <div className="text-2xl mb-3 text-gray-900 dark:text-white transition-colors duration-500">Contact Info</div>
+              <div  className="text-2xl mb-3 text-gray-900 dark:text-white transition-colors duration-500">Contact Info</div>
 
-              <div className="flex flex-col gap-2">
+              <div data-aos="fade-left" className="flex flex-col gap-2">
                 <button className="flex items-center gap-3 text-gray-700 dark:text-gray-400 hover:text-white dark:hover:text-yellow-400 transition-colors duration-300">
                   <FaEnvelope /> <span className="text-sm">info@mstechhive.com</span>
                 </button>

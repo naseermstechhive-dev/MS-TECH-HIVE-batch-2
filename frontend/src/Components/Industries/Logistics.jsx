@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { FiCheckCircle } from "react-icons/fi";
 import ServiceHero from '../ServiceHero';
@@ -10,9 +10,21 @@ import { FiUsers } from "react-icons/fi";
 import { CgSignal } from "react-icons/cg";
 import { GoClock } from "react-icons/go";
 import InfoCard2 from '../InfoCard2';
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useNavigate } from 'react-router-dom';
 
 
 const Logistics = () => {
+  let navigate=useNavigate()
+  useEffect(() => {
+    AOS.init({
+      duration: 900,
+      once: false,     
+      mirror: true,   
+      easing: "ease-out",
+    });
+  }, []);
 
   const points = [
     "Reduce delivery times by 40%",
@@ -46,10 +58,10 @@ const Logistics = () => {
 
                  <div className="bg-gradient-to-br  from-gray-800 to-gray-900">
           <div className="flex  flex-col gap-2 pt-10 pb-20">
-          <div className="text-[36px] font-bold text-white max-sm:text-[22px]">
+          <div className="text-[36px] font-bold text-white max-sm:text-[22px] text-center">
           Complete Logistics Management Suite
           </div>
-          <div className="text-[20px] text-white max-sm:text-[16px]">
+          <div className="text-[20px] text-white max-sm:text-[16px] text-center">
           From fleet management to last-mile delivery, optimize every aspect of your logistics operations
           </div>
         </div>
@@ -102,7 +114,7 @@ const Logistics = () => {
 
 
          <div className="flex flex-row  max-sm:flex-col p-10  bg-[#0b132b] gap-6">
-                       <div className=" text-white p-8  mx-auto">
+                       <div data-aos="fade-right"  className=" text-white p-8  mx-auto">
                   <h2 className="text-[30px] font-bold mb-6 max-sm:text-[20px]">
                  Deliver Excellence Every Mile
                   </h2>
@@ -115,7 +127,7 @@ const Logistics = () => {
                     ))}
                   </ul>
                        </div>
-                         <div className="bg-[#d79c00] text-[#0b132b] p-8 rounded-2xl w-[600px] max-sm:w-[340px] mx-auto">
+                         <div data-aos="fade-left"  className="bg-[#d79c00] text-[#0b132b] p-8 rounded-2xl w-[600px] max-sm:w-[340px] mx-auto">
                   <h2 className="text-2xl font-bold mb-3 text-start">
              Ready to Optimize Your Fleet?
                   </h2>
@@ -131,7 +143,7 @@ const Logistics = () => {
                     ))}
                   </ul>
         
-                 <div className=' text-start'> <button className="bg-[#0b132b] text-white font-semibold px-6 py-2 rounded-md hover:bg-[#1c2541] transition  ">
+                 <div className=' text-start'> <button onClick={()=>{navigate("/contact")}} className="bg-[#0b132b] text-white font-semibold px-6 py-2 rounded-md hover:bg-[#1c2541] transition  ">
                     Schedule Demo
                   </button></div>
                           </div>
