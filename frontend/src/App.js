@@ -20,6 +20,7 @@ import School from './Components/Industries/School';
 import ITCompany from './Components/Industries/ITCompany';
 import Office from './Components/Industries/Office';
 import IndustriesSection from './Components/IndustriesSections';
+import Hospitals from './Components/Industries/Hospitals';
 
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
           <Route path="/school" element={<School />} />
           <Route path="/itCompany" element={<ITCompany />} />
           <Route path="/industrieSection" element={<IndustriesSection />} />
+          <Route path="/hospitalss" element={<Hospitals />} />
 
         </Routes>
       </div>
