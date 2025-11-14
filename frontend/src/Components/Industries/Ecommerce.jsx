@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ServiceHero from '../ServiceHero';
 import { BsCart2 } from "react-icons/bs";
 
@@ -9,8 +9,20 @@ import { FiCreditCard } from "react-icons/fi";
 import InfoCard2 from '../InfoCard2';
 import { BiCube } from "react-icons/bi";
 import { FiCheckCircle } from "react-icons/fi";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useNavigate } from 'react-router-dom';
 
 const Ecommerce = () => {
+  let navigate=useNavigate()
+  useEffect(() => {
+    AOS.init({
+      duration: 900,
+      once: false,     
+      mirror: true,   
+      easing: "ease-out",
+    });
+  }, []);
    const points = [
     "Reduce delivery times by 40%",
     "Optimize fuel consumption and routes",
@@ -40,10 +52,10 @@ const Ecommerce = () => {
       />       
                  <div className="bg-gradient-to-br  from-gray-800 to-gray-900">
                          <div className="flex  flex-col gap-2 pt-10 pb-20">
-                         <div className="text-[36px] font-bold text-white max-sm:text-[22px]">
+                         <div className="text-[36px] font-bold text-white max-sm:text-[22px] text-center">
                         Complete E-commerce Automation Suite
                          </div>
-                         <div className="text-[20px] text-white max-sm:text-[16px]">
+                         <div className="text-[20px] text-white max-sm:text-[16px] text-center">
                         From customer acquisition to order fulfillment, optimize every aspect of your online business
                          </div>
                        </div>
@@ -96,7 +108,7 @@ const Ecommerce = () => {
                
                
                         <div className="flex flex-row  max-sm:flex-col p-10  bg-[#0b132b] gap-6">
-                                      <div className=" text-white p-8  mx-auto">
+                                      <div data-aos="fade-right"  className=" text-white p-8  mx-auto">
                                  <h2 className="text-[30px] font-bold mb-6 max-sm:text-[20px]">
                                Sell Smarter, Grow Faster
                                  </h2>
@@ -109,7 +121,7 @@ const Ecommerce = () => {
                                    ))}
                                  </ul>
                                       </div>
-                                        <div className="bg-[#d79c00] text-[#0b132b] p-8 rounded-2xl w-[600px]  max-sm:w-[340px] mx-auto">
+                                        <div  data-aos="fade-left" className="bg-[#d79c00] text-[#0b132b] p-8 rounded-2xl w-[600px]  max-sm:w-[340px] mx-auto">
                                  <h2 className="text-2xl font-bold mb-3 text-start">
                            Ready to Scale Your Online Store?
                                  </h2>
@@ -124,7 +136,7 @@ const Ecommerce = () => {
                                    ))}
                                  </ul>
                        
-                                <div className=' text-start'> <button className="bg-[#0b132b] text-white font-semibold px-6 py-2 rounded-md hover:bg-[#1c2541] transition  ">
+                                <div className=' text-start'> <button onClick={()=>{navigate("/contact")}} className="bg-[#0b132b] text-white font-semibold px-6 py-2 rounded-md hover:bg-[#1c2541] transition  ">
                                    Schedule Demo
                                  </button></div>
                                          </div>

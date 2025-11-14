@@ -28,12 +28,24 @@
 
 // export default InfoCard2;
 
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const InfoCard2 = ({ icon, title, description1, description2 }) => {
+
+
+  useEffect(() => {
+    AOS.init({
+      duration: 900,
+      once: false,     
+      mirror: true,   
+      easing: "ease-out",
+    });
+  }, []);
   return (
-    <div
-      className="group w-[410px] h-[220px] bg-[#374151] rounded-[12px] p-6 flex flex-col gap-3 justify-start items-start text-white
+    <div  data-aos="zoom-out"
+      className="group w-[410px] h-[220px] bg-[#374151]   rounded-[12px] p-6 flex flex-col gap-3 justify-start items-start text-white
                  shadow-md max-sm:w-[360px] relative overflow-hidden hover:bg-black/79  "
     >
       {/* Icon - Moves left on hover - Accepts both React icons and string emojis */}

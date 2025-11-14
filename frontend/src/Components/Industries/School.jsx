@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ServiceHero from '../ServiceHero'
 import { CiClock2 } from "react-icons/ci";
 import { FiUsers } from "react-icons/fi";
@@ -9,9 +9,13 @@ import { LuShield } from "react-icons/lu";
 import { FaRegMessage } from "react-icons/fa6";
 import { CgNotes } from "react-icons/cg";
 import { MdOutlineSignalCellularAlt } from "react-icons/md";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useNavigate } from 'react-router-dom';
 
 
 const School = () => {
+  let navigate=useNavigate()
   const points = [
     "Reduce admission processing time by 60%",
     "Improve parent engagement by 75%",
@@ -25,6 +29,14 @@ const School = () => {
     "Staff training and support",
     "Gradual implementation plan",
   ];
+  useEffect(() => {
+    AOS.init({
+      duration: 900,
+      once: false,     
+      mirror: true,   
+      easing: "ease-out",
+    });
+  }, []);
   return (
     <>
        <ServiceHero
@@ -42,10 +54,10 @@ const School = () => {
 
        <div className="bg-gradient-to-br  from-gray-800 to-gray-900">
          <div className="flex  flex-col gap-2 pt-10 pb-20">
-          <div className="text-[36px] font-bold text-white max-sm:text-[20px]">
+          <div className="text-[36px] font-bold text-white max-sm:text-[20px] text-center">
             Complete School Management System
           </div>
-          <div className="text-[20px] text-white max-sm:text-[15px] ">
+          <div className="text-[20px] text-white max-sm:text-[15px] text-center ">
             Streamline every aspect of school administration with our comprehensive automation platform
           </div>
         </div>
@@ -97,8 +109,8 @@ const School = () => {
         </div>
 
 
-         <div className="flex  flex-row max-sm:flex-col p-10  bg-[#0b132b] gap-6 " >
-                       <div className=" text-white p-8  mx-auto">
+         <div  className="flex  flex-row max-sm:flex-col p-10  bg-[#0b132b] gap-6 " >
+                       <div data-aos="fade-right" className=" text-white p-8  mx-auto">
                   <h2 className="text-[30px] font-bold mb-6  max-sm:text-[20px]">
                    Enhance Educational Excellence
                   </h2>
@@ -111,7 +123,7 @@ const School = () => {
                     ))}
                   </ul>
                        </div>
-                         <div className="bg-[#d79c00] text-[#0b132b] p-8 max-sm:p-3 rounded-2xl w-[600px] max-sm:w-[340px] mx-auto">
+                         <div data-aos="fade-left" className="bg-[#d79c00] text-[#0b132b] p-8 max-sm:p-3 rounded-2xl w-[600px] max-sm:w-[340px] mx-auto">
                   <h2 className="text-2xl font-bold mb-3 text-start max-sm:text-[20px]">
                    Transform Your School Today
                   </h2>
@@ -128,7 +140,7 @@ const School = () => {
                     ))}
                   </ul>
         
-                 <div className=' text-start'> <button className="bg-[#0b132b] text-white font-semibold px-6 py-2 rounded-md hover:bg-[#1c2541] transition  ">
+                 <div className=' text-start'> <button onClick={()=>{navigate("/contact")}} className="bg-[#0b132b] text-white font-semibold px-6 py-2 rounded-md hover:bg-[#1c2541] transition  ">
                     Schedule Demo
                   </button></div>
                           </div>
